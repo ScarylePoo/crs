@@ -1,0 +1,558 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+/*********************************************
+* CERBERUS SYSTEMS - THEME
+**********************************************
+* Built from the marker mockup: orange and blue
+* on paper, with hand-drawn shapes over a
+* precise grid.
+*
+* Assumes the current css/base.css, which
+* handles the reset, links, lists, quotes,
+* tables, code, focus rings and reduced motion.
+* None of that is repeated here — the theme
+* reassigns base.css's variables and lets it do
+* the work.
+**********************************************
+* INDEX
+**********************************************
+1. Tokens
+2. Typography
+3. Marker shapes (signature)
+4. Buttons
+5. Links
+6. Images
+7. Hero
+8. Bands & sections
+9. Feature cards
+10. Content containers
+11. Navigation
+12. Footer
+13. Utilities
+**********************************************/
+
+
+/*********************************************
+* 1. Tokens
+**********************************************
+* The palette comes first under its own names,
+* then gets mapped onto the variables base.css
+* reads. Rebranding means editing the top block
+* only.
+**********************************************/
+:root {
+	/* --- Palette (from the mockup) --------- */
+	--ink:         #14110F;
+	--ink-soft:    #4A423C;
+	--paper:       #FBF9F5;
+	--paper-sunk:  #F1ECE2;
+	--rule:        #DCD4C6;
+
+	--orange:      #E8620C;
+	--orange-deep: #A8430A;
+	--blue:        #1592DD;
+	--blue-deep:   #0A5C90;
+	--on-blue:     #F2FAFF;
+
+	--display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+	--label:   "IBM Plex Mono", ui-monospace, monospace;
+
+	/* --- Mapped onto base.css --------------
+	   base.css styles every element from these,
+	   so the whole document picks up the
+	   palette without a single extra rule. */
+	--font-body:    "IBM Plex Sans", system-ui, sans-serif;
+	--font-heading: var(--display);
+	--font-mono:    var(--label);
+
+	--font-size-base: 1.0625rem;
+	--line-height:         1.65;
+	--line-height-heading: 1.08;
+	--line-height-tight:   1.2;
+
+	/* Display-weight heading scale. Larger than
+	   the base.css default relative to body text,
+	   which is what gives the page its editorial
+	   feel. */
+	--h1: clamp(3.3rem, 2.5rem + 3.6vw, 4.95rem);
+	--h2: clamp(2.6rem, 2.1rem + 2.4vw, 3.6rem);
+	--h3: 1.72rem;
+	--h4: 1.35rem;
+
+	--color-text:       var(--ink);
+	--color-heading:    var(--ink);
+	--color-muted:      var(--ink-soft);
+	--color-bg:         var(--paper);
+	--color-surface:    var(--paper-sunk);
+	--color-border:     var(--rule);
+	--color-link:       var(--orange-deep);
+	--color-link-hover: var(--ink);
+	--color-focus:      var(--orange);
+
+	--measure: 62ch;
+	--radius:  2px;
+
+	/* --- Layout ---------------------------- */
+	--width-page: 1180px;
+	--gutter:     24px;
+
+	/* --- StellarNav overrides --------------
+	   The nav bar is the orange stripe in the
+	   mockup. */
+	--bottomlevel-bg-color:       var(--orange);
+	--bottomlevel-bg-color-hover: var(--orange-deep);
+	--firstlevel-bg-color:        var(--orange-deep);
+	--firstlevel-bg-color-hover:  var(--ink);
+	--secondlevel-bg-color:       var(--ink);
+	--secondlevel-bg-color-hover: var(--ink);
+}
+
+body {
+	animation: fadeIn .6s ease-out;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+
+/*********************************************
+* 2. Typography
+**********************************************
+* base.css sets the sizes from the --h* tokens
+* above. This adds only the things a token can't
+* express: weight, tracking, and the two label
+* styles.
+**********************************************/
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 800;
+	letter-spacing: -0.02em;
+}
+
+h3 { letter-spacing: -0.01em; }
+
+.eyebrow {
+	display: block;
+	margin: 0 0 .9em;
+	font-family: var(--label);
+	font-size: 1.07rem;
+	font-weight: 500;
+	letter-spacing: .16em;
+	text-transform: uppercase;
+	color: var(--orange-deep);
+}
+
+/* base.css ships .lead; this is the Cerberus
+   size and colour for it. */
+.lead {
+	max-width: 58ch;
+	font-size: 1.58rem;
+	line-height: 1.5;
+	color: var(--ink-soft);
+}
+
+.pagedate,
+.pageauthor {
+	font-family: var(--label);
+	font-size: 1.1rem;
+	color: var(--ink-soft);
+}
+
+
+/*********************************************
+* 3. Marker shapes (signature)
+**********************************************
+* Everything drawn by hand in the mockup keeps
+* its wobble. Type and grid stay precise
+* underneath.
+**********************************************/
+.markeredge {
+	clip-path: polygon(
+		0% 9px, 7% 2px, 15% 8px, 24% 1px, 34% 7px, 45% 2px,
+		56% 9px, 67% 1px, 78% 7px, 88% 2px, 100% 8px,
+		100% calc(100% - 8px), 91% calc(100% - 2px), 81% calc(100% - 9px),
+		70% calc(100% - 1px), 59% calc(100% - 7px), 47% calc(100% - 2px),
+		36% calc(100% - 8px), 25% calc(100% - 1px), 14% calc(100% - 7px),
+		5% calc(100% - 2px), 0% calc(100% - 9px)
+	);
+}
+
+.blob     { border-radius: 48% 52% 55% 45% / 52% 46% 54% 48%; }
+.blob-alt { border-radius: 55% 45% 47% 53% / 45% 55% 45% 55%; }
+
+
+/*********************************************
+* 4. Buttons
+**********************************************/
+.btn {
+	display: inline-block;
+	padding: 14px 40px;
+	font-family: var(--display);
+	font-size: 1.44rem;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	text-decoration: none;
+	border: 2px solid transparent;
+	border-radius: 52% 48% 50% 50% / 58% 56% 44% 42%;
+	cursor: pointer;
+	transition: transform .18s ease, background-color .18s ease, color .18s ease;
+}
+
+.btn:hover { transform: translateY(-2px) rotate(-.6deg); }
+
+.btn-orange        { background: var(--orange); color: #fff; }
+.btn-orange:hover  { background: var(--orange-deep); color: #fff; }
+
+.btn-ink           { background: var(--paper); color: var(--ink); border-color: var(--ink); }
+.btn-ink:hover     { background: var(--ink); color: var(--paper); }
+
+.btn-onblue        { background: var(--paper); color: var(--blue-deep); }
+.btn-onblue:hover  { background: var(--ink); color: var(--paper); }
+
+
+/*********************************************
+* 5. Links
+**********************************************
+* base.css underlines links, which is the right
+* default. This theme replaces that with the
+* sliding underline instead.
+**********************************************/
+a {
+	position: relative;
+	text-decoration: none;
+}
+
+a::before {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	border-radius: 4px;
+	background-color: var(--orange);
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform .3s ease-in-out;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:hover::before {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+.band a { color: var(--on-blue); }
+.band a::before,
+.footercontent a::before { background-color: #fff; }
+
+.btn::before,
+.disable-scrolling-underline::before {
+	content: none;
+}
+
+
+/*********************************************
+* 6. Images
+**********************************************
+* base.css already stops images overflowing.
+* These add the theme's decoration and the size
+* helpers.
+**********************************************/
+img {
+	width: 100%;
+	border: 1px solid var(--rule);
+	transition: box-shadow .5s ease-in-out;
+}
+
+img:hover     { box-shadow: 0 0 2px 1px rgba(0, 0, 0, .35); }
+a img:hover   { box-shadow: 0 0 2px 1px rgba(21, 146, 221, .6); }
+
+img.nodecoration,
+img.nodecoration:hover {
+	border: none;
+	box-shadow: none;
+	transition: none;
+}
+
+img.tiny   { max-width: 150px; }
+img.small  { max-width: 300px; }
+img.medium { max-width: 600px; }
+img.large  { max-width: 1000px; }
+
+
+/*********************************************
+* 7. Hero
+**********************************************/
+.hero, .herosmall {
+	padding: clamp(48px, 8vh, 96px) 0;
+	background-color: var(--paper);
+	background-image: radial-gradient(circle at 1px 1px, var(--rule) 1px, transparent 0);
+	background-size: 22px 22px;
+	border-bottom: 3px solid var(--ink);
+}
+
+.herosmall { padding: clamp(32px, 5vh, 56px) 0; }
+
+.herocontent {
+	max-width: var(--width-page);
+	margin: 0 auto;
+	padding: 0 var(--gutter);
+}
+
+.hero .row {
+	align-items: center;
+	justify-content: center;
+}
+
+.herotitle, .heroimage { min-width: 0; }
+.herotitle { text-align: left; }
+
+span.herotext {
+	display: block;
+	margin: 0 0 .35em;
+	font-family: var(--display);
+	font-size: clamp(3.575rem, 2.4rem + 5.2vw, 6.325rem);
+	font-weight: 800;
+	line-height: .98;
+	letter-spacing: -0.035em;
+	color: var(--ink);
+	text-wrap: balance;
+}
+
+.herosmall span.herotext {
+	font-size: clamp(2.6rem, 1.9rem + 3.2vw, 3.85rem);
+	text-align: center;
+}
+
+.herosubtext {
+	max-width: 46ch;
+	margin: 0 0 1.8em;
+	font-size: clamp(1.44rem, 1.3rem + 0.6vw, 1.72rem);
+	color: var(--ink-soft);
+}
+
+.heroimage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.heroimage img.crest {
+	width: 100%;
+	max-width: 340px;
+}
+
+@media only screen and (max-width: 1000px) {
+	.herotitle { text-align: center; }
+	.herosubtext { margin-left: auto; margin-right: auto; }
+	.heroimage img.crest { max-width: 240px; }
+}
+
+.herodownarrowcontainer { display: none; }
+
+
+/*********************************************
+* 8. Bands & sections
+**********************************************
+* Note: these are .section-wide / .section-inner,
+* not .section. The page-*.php templates already
+* emit <div class="section group">, so styling
+* .section would pad the inside of every page.
+**********************************************/
+.section-wide {
+	padding: clamp(56px, 8vw, 92px) var(--gutter);
+}
+
+.section-inner {
+	max-width: var(--width-page);
+	margin: 0 auto;
+}
+
+.section-narrow {
+	max-width: 760px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.band {
+	margin: 0;
+	background: var(--blue);
+	color: var(--on-blue);
+}
+
+.band h1, .band h2, .band h3 { color: #fff; }
+.band .lead    { color: var(--on-blue); opacity: .92; }
+.band .eyebrow { color: var(--on-blue); opacity: .85; }
+
+.band-deep { background: var(--blue-deep); }
+
+.sunk { background: var(--paper-sunk); }
+
+hr {
+	max-width: 220px;
+	margin: 0 auto;
+	border: 0;
+	border-top: 2px solid var(--rule);
+}
+
+
+/*********************************************
+* 9. Feature cards
+**********************************************/
+.feature { text-align: left; }
+
+.feature .icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 68px;
+	height: 68px;
+	margin-bottom: 20px;
+	font-size: 2.2rem;
+	background: var(--orange);
+	color: #fff;
+}
+
+.feature h3 { margin-top: 0; margin-bottom: .4em; }
+
+.feature p {
+	margin-bottom: 0;
+	font-size: 1.35rem;
+	color: var(--ink-soft);
+}
+
+@media only screen and (max-width: 1000px) {
+	.feature { text-align: center; }
+	.feature .icon { margin-left: auto; margin-right: auto; }
+}
+
+/* Bulleted list using the blob shape. */
+ul.ticks {
+	list-style: none;
+	padding-left: 0;
+}
+
+ul.ticks li {
+	position: relative;
+	padding-left: 26px;
+}
+
+ul.ticks li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: .55em;
+	width: 12px;
+	height: 12px;
+	background: var(--orange);
+	border-radius: 48% 52% 55% 45% / 52% 46% 54% 48%;
+}
+
+
+/*********************************************
+* 10. Content containers
+**********************************************/
+.contentcontainer {
+	max-width: var(--width-page);
+	margin: 0 auto;
+	padding: 40px var(--gutter);
+	background: var(--paper);
+}
+
+.pagetitle {
+	max-width: var(--measure);
+	margin-bottom: 40px;
+}
+
+.pagetitle h1 { margin: 0; }
+
+.content { max-width: var(--measure); }
+
+.content-wide { max-width: none; }
+
+/* Used by page-home.php — sections manage their
+   own width. */
+.homelayout {
+	max-width: none;
+	padding: 0;
+}
+
+
+/*********************************************
+* 11. Navigation
+**********************************************
+* Colours come from the variables in section 1.
+* navigation.css itself is unchanged.
+**********************************************/
+.stickynav { text-shadow: none; }
+
+
+/*********************************************
+* 12. Footer
+**********************************************/
+.footercontainer {
+	padding-top: 56px;
+	background-color: var(--ink);
+	border-top: 6px solid var(--orange);
+}
+
+.footercontent {
+	max-width: var(--width-page);
+	margin: 0 auto;
+	padding: 0 var(--gutter) 24px;
+	color: #E8E2D9;
+	text-align: left;
+}
+
+.footercontent a { color: #fff; }
+
+.footercontent span.sectiontitle {
+	display: block;
+	margin-bottom: 14px;
+	font-family: var(--display);
+	font-size: 1.58rem;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	text-align: left;
+	color: #fff;
+}
+
+
+/*********************************************
+* 13. Utilities
+**********************************************
+* base.css already ships .lead, .hug, .flush,
+* .measure, .table-scroll and .visually-hidden.
+**********************************************/
+.textalign-left   { text-align: left; }
+.textalign-center { text-align: center; }
+.textalign-right  { text-align: right; }
+
+.center { display: block; margin-left: auto; margin-right: auto; }
+
+.padding-5px  { padding: 5px; }
+.padding-10px { padding: 10px; }
+.padding-20px { padding: 20px; }
+.padding-50px { padding: 50px; }
+
+#debug-overlay-container {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9999;
+	padding: 10px;
+	font-family: var(--label);
+	font-size: 12px;
+	line-height: 1.5;
+	background-color: var(--paper-sunk);
+	border-top: 1px solid var(--rule);
+}
+
+.debug-content { max-width: 800px; margin: 0 auto; }
