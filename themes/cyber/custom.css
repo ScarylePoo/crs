@@ -208,7 +208,7 @@ h3 { letter-spacing: -0.01em; }
 .btn-ink           { background: var(--paper); color: var(--ink); border-color: var(--ink); }
 .btn-ink:hover     { background: var(--ink); color: var(--paper); }
 
-.btn-onblue        { background: var(--paper); color: var(--blue-deep); }
+.btn-onblue        { background: var(--ink); color: var(--blue-deep); }
 .btn-onblue:hover  { background: var(--ink); color: var(--paper); }
 
 
