@@ -30,6 +30,12 @@
 	<meta name="referrer" content="strict-origin">
 	<link rel="canonical" href="<?php echo $currentURL; ?>">
 	
+	<?php /* Theme helpers, and the page's OWN excerpt and image captured before the
+	         site-wide fallbacks below overwrite them. The masthead and the post
+	         layouts only want to show these when the page actually set them. */ ?>
+	<?php include_once __DIR__ . '/theme-functions.php'; ?>
+	<?php $cyberExcerptRaw = (string) $pageexcerpt; $cyberImageRaw = (string) $pageimage; ?>
+
 	<?php /* Set a fallback page excerpt/description */ ?>
 	<?php if ($pageexcerpt == "") { $pageexcerpt = $WebsiteDescription; }?>
 	<meta name="description" content="<?php echo $pageexcerpt; ?>">
@@ -105,6 +111,19 @@
 	<!-- Beginning of actual page layout
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<?php include 'navigation.php'; ?>
+	<?php
+		/* Masthead
+		   The home page keeps its full hero. Every other page gets a
+		   masthead that carries the page title, a breadcrumb and, for
+		   posts, the byline — so the layouts below never print a title
+		   themselves. Which masthead a layout gets is decided in
+		   theme-functions.php (cyber_masthead_for). */
+		if (!isset($pagelayout) || $pagelayout == "") { $pagelayout = "page-md"; } /* Set pagelayout to basic page if it isn't explicitly set */
+		$cyberMasthead   = cyber_masthead_for($pagelayout);
+		$cyberTitle      = isset($pagetitle) ? $pagetitle : ucwords(basename($pagename));
+		$cyberIsArticle  = ($pagetype == "article");
+		$cyberCategories = cyber_categories($pagecategory);
+	?>
 	<div class="header">
 	<?php if ($pagename == "home") { ?>
 		<div class="hero">
@@ -122,10 +141,28 @@
 				</div>
 			</div>
 		</div>
-	<?php } else { ?>
+	<?php } elseif ($cyberMasthead == "site") { ?>
 		<div class="herosmall">
 			<div class="herocontent">
 				<span class="herotext"><?php echo $WebsiteTitle; ?></span>
+			</div>
+		</div>
+	<?php } else { ?>
+		<div class="masthead masthead-<?php echo $cyberMasthead; ?><?php if ($cyberMasthead == "band") { echo " markeredge-bottom"; } ?>">
+			<div class="masthead-inner">
+				<p class="eyebrow crumbs"><?php echo cyber_breadcrumb($pagename, $WebsiteTitle); ?></p>
+				<h1><?php echo $cyberTitle; ?></h1>
+				<?php if ($cyberExcerptRaw != "") { ?>
+					<p class="lead"><?php echo $cyberExcerptRaw; ?></p>
+				<?php } ?>
+				<?php if ($cyberIsArticle) { ?>
+					<p class="postmeta">
+						<span class="pagedate"><?php echo formatDate($pagedate, 'F j, Y'); ?></span>
+						<span class="pageauthor"><?php echo $pageauthor; ?></span>
+						<span class="readingtime"><?php echo cyber_reading_time($pagename); ?> min read</span>
+						<span class="postmeta-cats"><?php echo cyber_category_chips($cyberCategories); ?></span>
+					</p>
+				<?php } ?>
 			</div>
 		</div>
 	<?php } ?>
@@ -133,6 +170,5 @@
 
 <a id="maincontent"></a>
 
-<?php if (!isset($pagelayout) || $pagelayout == "") { $pagelayout = "page-md"; } /* Set pagelayout to basic page if it isn't explicitly set */ ?>
 <?php include $pagelayout . ".php" ?>
 <?php include 'footer.php'; ?>

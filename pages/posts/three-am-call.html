@@ -1,0 +1,36 @@
+<!-- pagetitle:What actually happens when we call you at 3am -->
+<!-- pagelayout:post-feature -->
+<!-- pagedate:05/05/2026 -->
+<!-- pageimage:pages/posts/images/three-am-call.webp -->
+<!-- pageexcerpt:We promise that if something moves in the night, a person you have met will phone you. People reasonably want to know what that call is like. Here is one, start to finish. -->
+<!-- pagekeywords:incident,out of hours,monitoring,containment,on call -->
+<!-- pageauthor:Marcus Oyelaran -->
+<!-- pagetype:article -->
+<!-- pagecategory: field-notes -->
+
+<p>The alert came in at 2:51 on a Tuesday morning. A reception computer at an architecture practice had started a command-line session, which reception computers do not do, and the session had begun asking the network which machines held administrator accounts. Nobody was in the building. The cleaner had left at nine.</p>
+<p>The detail below is lightly altered, and shared with the client's blessing.</p>
+
+<h2>2:51 to 2:58: deciding whether it is real</h2>
+<p>Most alerts are nothing. A software updater behaving oddly, an accountant working late from a hotel. The job in the first few minutes is to find the boring explanation, and to be honest with yourself when there is not one. This one had a parent process that was a document opened from an email eleven hours earlier. There was no boring explanation.</p>
+
+<h2>2:58: containment</h2>
+<p>One click isolates the machine. It stays powered on, so that memory is preserved, but it can now talk to nothing except us. We have written permission from every client to do this without asking. At three in the morning, permission that has to be sought is permission that arrives too late.</p>
+
+<h2>3:04: the call</h2>
+<p>The practice manager answered on the fourth ring. The script, such as it is:</p>
+<ul class="ticks">
+	<li>Who I am, and that she has met me</li>
+	<li>That something has happened, it is contained, and nobody needs to go anywhere tonight</li>
+	<li>What we know, in two sentences</li>
+	<li>What we need from her: nothing until eight, then fifteen minutes</li>
+</ul>
+<p>The whole call took under four minutes. She has since told us the most useful sentence in it was <em>you can go back to sleep</em>.</p>
+
+<blockquote class="pullquote">
+	<p>The point of the call is not to share the panic. It is to take it away.</p>
+</blockquote>
+
+<h2>The next morning</h2>
+<p>By the time the office opened we knew the attacker had been inside for eleven hours, had reached exactly one machine, and had not obtained any credentials worth having. The receptionist's password was changed, her laptop was rebuilt over lunch, and the written summary went out at four that afternoon.</p>
+<p>Total disruption to the practice: one person without a computer for half a day. The version of this story without monitoring has the same first chapter and a very different ending, usually discovered on a Monday, usually by the accounts department.</p>

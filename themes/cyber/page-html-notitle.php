@@ -1,20 +1,18 @@
 </head>
 <body>
 
-	<!-- Primary Page Layout
+	<!-- Primary Page Layout (no page title; the masthead shows the site name)
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<div class="contentcontainer">
-		<div class="content">
+	<main class="contentcontainer layout-prose">
+		<div class="content prose">
 			<div class="section group">
-					<?php
-						$filename = file_get_contents("./pages/" . $pagename . ".html");
-						// Parse and replace shortcodes
-						$parsed_content = parse_shortcodes($filename);
-						echo $parsed_content;
-					?>
+				<?php
+					$cyberParts = cyber_page_parts($pagename, !empty($cyberMarkdown));
+					echo $cyberParts['main'];
+				?>
 			</div>
 		</div>
-	</div>
+	</main>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

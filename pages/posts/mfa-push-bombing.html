@@ -1,0 +1,60 @@
+<!-- pagetitle:Push-bombing: when the MFA prompt is the attack -->
+<!-- pagelayout:post-advisory -->
+<!-- pagedate:09/08/2026 -->
+<!-- pageimage:pages/posts/images/mfa-push-bombing.webp -->
+<!-- pageexcerpt:Three clients in a fortnight have had staff approve a sign-in they did not start, because the phone would not stop buzzing. Here is what it looks like and the one setting that ends it. -->
+<!-- pagekeywords:mfa,push bombing,mfa fatigue,number matching,microsoft 365,authenticator -->
+<!-- pageauthor:Dana Whitlock -->
+<!-- pagetype:article -->
+<!-- pagecategory: advisories -->
+
+<h2>What we are seeing</h2>
+<p>An attacker already has a working password, usually from an old breach or a convincing sign-in page. Multi-factor authentication is doing its job and stopping them. So they simply try again. And again. Forty prompts in ten minutes, often late in the evening, until the person on the other end taps <strong>Approve</strong> to make it stop.</p>
+<p>It works more often than anyone would like. It is not a technical failure. It is a tired person and a badly designed prompt.</p>
+
+<div class="callout callout-warn">
+	<p class="callout-title">If this is happening to you right now</p>
+	<p>Do not approve anything. Change your password from a different device, then call us. The prompts stop the moment the old password does.</p>
+</div>
+
+<h2>How to tell</h2>
+<ul class="ticks">
+	<li>Approval prompts arriving when you are not signing in to anything</li>
+	<li>Several in a row, a minute or less apart</li>
+	<li>A phone call or message shortly afterwards from "IT" asking you to approve it</li>
+	<li>In the sign-in log: a run of failures with reason <code>MFA denied; user declined</code> followed by one success</li>
+</ul>
+
+<h2>The fix</h2>
+<p>Turn on <strong>number matching</strong>. Instead of Approve and Deny, the sign-in screen shows a two-digit number and the phone asks the user to type it. Someone who is not looking at the sign-in screen cannot know the number, so there is nothing to approve by accident.</p>
+<ol class="steps">
+	<li><strong>Check it is enforced, not just available.</strong> Most platforms now default to it for new tenants. Older tenants frequently have exceptions nobody remembers granting.</li>
+	<li><strong>Remove SMS and voice-call fallbacks</strong> for anyone with administrator rights. A fallback is a second front door.</li>
+	<li><strong>Tell people what a real prompt looks like.</strong> One short message: <em>we will never call and ask you to approve a sign-in.</em></li>
+</ol>
+
+<h2>What to look for in the logs</h2>
+<p>If you want to check whether it has already been tried, this is roughly the shape of it. Field names vary by platform.</p>
+<pre><code>user            result    reason                    source_country
+j.alvarez       failure   MFA denied; user declined  --
+j.alvarez       failure   MFA denied; user declined  --
+j.alvarez       failure   MFA denied; timeout        --
+j.alvarez       success   MFA approved               (unfamiliar)</code></pre>
+<p>A success at the end of a run like that is an incident, whatever the user remembers. Treat it as one.</p>
+
+<!-- sidebar -->
+
+<div class="sidecard sidecard-ink">
+	<p class="eyebrow">At a glance</p>
+	<dl class="factlist">
+		<dt>Severity</dt><dd><span class="chip chip-high">High</span></dd>
+		<dt>Affects</dt><dd>Any tenant using approve / deny push prompts</dd>
+		<dt>Fix</dt><dd>Enforce number matching</dd>
+		<dt>Effort</dt><dd>Twenty minutes</dd>
+	</dl>
+</div>
+
+<div class="sidecard">
+	<p class="eyebrow">Clients</p>
+	<p>You are already covered. We enforced number matching on every managed tenant in the spring. No action needed.</p>
+</div>

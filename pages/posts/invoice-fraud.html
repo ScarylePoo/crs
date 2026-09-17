@@ -1,0 +1,32 @@
+<!-- pagetitle:The invoice that was almost paid -->
+<!-- pagelayout:post-standard -->
+<!-- pagedate:03/10/2026 -->
+<!-- pageimage:pages/posts/images/invoice-fraud.webp -->
+<!-- pageexcerpt:A supplier emailed to say their bank details had changed. The email was real, from the real mailbox, in the real thread. The supplier had not sent it. -->
+<!-- pagekeywords:invoice fraud,business email compromise,bec,payment diversion,mailbox rules -->
+<!-- pageauthor:Dana Whitlock -->
+<!-- pagetype:article -->
+<!-- pagecategory: field-notes, advisories -->
+
+<p>The message arrived as a reply in an existing conversation about a real project, from the supplier's genuine address, with the correct signature and the usual tone. It said the supplier had moved banks, and gave new details for the invoice due on Friday: a little over forty thousand dollars.</p>
+<p>It was stopped by a bookkeeper who thought the phrase <em>kindly update your records</em> did not sound like Steve.</p>
+
+<h2>How it was done</h2>
+<p>The supplier's mailbox had been compromised weeks earlier. The attacker did nothing noisy. They created a mailbox rule that quietly moved anything mentioning invoices or payment into a folder the owner never opened, read the conversations at leisure, and waited for a large invoice to come due.</p>
+<p>Nothing on our client's side had been breached. No filter would have caught it, because there was nothing wrong with the email except its contents.</p>
+
+<blockquote>
+	<p>The only control that reliably stops payment diversion is a phone call to a number you already had.</p>
+</blockquote>
+
+<h2>The rule we now give everyone</h2>
+<ul class="ticks">
+	<li>Any change to bank details is confirmed by phone before it is entered</li>
+	<li>The number dialed comes from your own records, never from the message asking for the change</li>
+	<li>The person who enters the change is not the person who approves the payment</li>
+	<li>Nobody is ever in trouble for delaying a payment to check</li>
+</ul>
+<p>The fourth point matters most. The bookkeeper in this story nearly did not raise it, because the invoice was already late and she did not want to look difficult.</p>
+
+<h2>Check your own mailbox rules</h2>
+<p>It takes two minutes. Look for anything you did not create, particularly rules that move or delete messages containing words like <code>invoice</code>, <code>payment</code> or <code>bank</code>, or that forward mail outside the organization. If you find one, do not delete it. Call somebody first; it is evidence.</p>

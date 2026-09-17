@@ -1,0 +1,36 @@
+<!-- pagetitle:Seven things every first audit finds -->
+<!-- pagelayout:post-standard -->
+<!-- pagedate:07/21/2026 -->
+<!-- pageimage:pages/posts/images/first-audit.webp -->
+<!-- pageexcerpt:After enough first audits you can write most of the report before you arrive. These are the findings that turn up nearly every time, in roughly the order we find them. -->
+<!-- pagekeywords:security audit,findings,assessment,admin rights,legacy accounts -->
+<!-- pageauthor:Priya Raman -->
+<!-- pagetype:article -->
+<!-- pagecategory: field-notes -->
+
+<p>None of what follows is exotic, and none of it is a criticism. These are what happens to any network that has been looked after by busy people for more than a few years. They are also, not by coincidence, the things attackers look for first.</p>
+
+<h2>1. An account for someone who left</h2>
+<p>Almost without exception. Usually still licensed, often still receiving mail, occasionally still signed in on a phone in somebody's kitchen drawer. We wrote a whole note on <a href="posts/offboarding-checklist">why offboarding gets missed</a>.</p>
+
+<h2>2. More administrators than staff who need it</h2>
+<p>The owner, because they are the owner. The office manager, because it was easier that day. A supplier who needed it once in 2021. Every administrator is another set of keys to everything; most offices need two.</p>
+
+<h2>3. Multi-factor authentication, with exceptions</h2>
+<p>MFA is switched on, except for the three people who complained. Those three are, reliably, the most senior people in the organization and therefore the most valuable accounts in it.</p>
+
+<h2>4. A backup nobody has restored</h2>
+<p>See <a href="posts/restore-test">the Friday test</a>. The green tick is not evidence.</p>
+
+<h2>5. Something forwarded through the firewall</h2>
+<p>A remote desktop port, a camera recorder, <a href="posts/printer-exposure">a printer</a>. Opened for a good reason, by someone who meant to close it afterwards.</p>
+
+<h2>6. One machine running something unsupported</h2>
+<p>It drives the plotter, or the door system, or the one piece of software the supplier stopped updating. It cannot be replaced this year. It can be fenced off from everything else in an afternoon.</p>
+
+<h2>7. Nobody knows who owns the domain name</h2>
+<p>It was registered by a web designer in 2012 using an email address that no longer exists. This one is not a security finding so much as a business-continuity cliff edge, and it is the finding clients thank us for most.</p>
+
+<hr />
+
+<p>If you recognized four or more, you are entirely normal. If you would like to find out for certain, <a href="services/audits">that is what the audit is for</a>.</p>

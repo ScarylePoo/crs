@@ -1,0 +1,50 @@
+<!-- pagetitle:A backup you have never restored is a rumor -->
+<!-- pagelayout:post-feature -->
+<!-- pagedate:08/19/2026 -->
+<!-- pageimage:pages/posts/images/restore-test.webp -->
+<!-- pageexcerpt:Every organization we meet has backups. About half of them have backups that work. The only way to find out which half you are in is to restore one, on purpose, on a quiet Friday. -->
+<!-- pagekeywords:backup,restore test,disaster recovery,3-2-1,ransomware -->
+<!-- pageauthor:Marcus Oyelaran -->
+<!-- pagetype:article -->
+<!-- pagecategory: guides, field-notes -->
+
+<p>The green tick in the backup console means one thing: a job ran and did not report an error. It does not mean the data is complete, or readable, or that anyone knows the password to decrypt it, or that restoring it takes less than a week. Those are different questions, and the console does not ask them.</p>
+<p>We have walked into three ransomware recoveries in which the backups were, according to every dashboard, perfect. In one the job had been faithfully backing up an empty folder since a server migration two years earlier. In another the encryption key lived in a password manager on the server that had just been encrypted. In the third the backups were fine, and restoring them over the office internet connection would have taken nineteen days.</p>
+
+<blockquote class="pullquote">
+	<p>Nobody wants backups. What they want is restores.</p>
+</blockquote>
+
+<h2>The Friday test</h2>
+<p>Once a month, pick a quiet afternoon and restore something real to somewhere it did not come from. Not a single file back to its original folder. A whole mailbox, a whole database, a whole virtual machine, onto different hardware, by someone following only the written procedure.</p>
+<ol class="steps">
+	<li><strong>Choose at random.</strong> If you always test the same small share, you have proven that one small share is recoverable.</li>
+	<li><strong>Restore to somewhere else.</strong> A spare machine or an isolated cloud instance. If the original hardware is gone, "restore in place" is not an option you will have.</li>
+	<li><strong>Time it.</strong> Start a stopwatch. The number you get is your real recovery time, and it is the one to give your directors.</li>
+	<li><strong>Open the data.</strong> Start the database. Open the spreadsheet. Log in to the restored server. A file that exists is not the same as a file that works.</li>
+	<li><strong>Write down what went wrong.</strong> Something will. That is the point of doing it on a Friday in August rather than a Monday in crisis.</li>
+</ol>
+
+<h2>What good looks like</h2>
+<div class="table-scroll">
+<table class="table-full">
+	<thead><tr><th>Question</th><th>Bad answer</th><th>Good answer</th></tr></thead>
+	<tbody>
+		<tr><td>When was the last restore?</td><td>"The jobs are all green."</td><td>A date, within the last month</td></tr>
+		<tr><td>How long does a full restore take?</td><td>"A few hours, probably."</td><td>A measured number</td></tr>
+		<tr><td>Where is the decryption key?</td><td>"In the backup software."</td><td>Printed, in a safe, off site</td></tr>
+		<tr><td>Can ransomware reach the backups?</td><td>"They are on the NAS."</td><td>One copy is offline or immutable</td></tr>
+	</tbody>
+</table>
+</div>
+
+<h2>Three, two, one, and one more</h2>
+<p>The old rule still holds: three copies, on two kinds of storage, one of them off site. The modern amendment is that at least one copy must be somewhere an attacker with your administrator password cannot delete it. Immutable cloud storage does this. So does a disk in a drawer, which is unfashionable and has never once been encrypted over the network.</p>
+
+<figure>
+	<img class="nodecoration" src="pages/posts/images/restore-test.webp" alt="Illustration of a storage drum with a restore arrow">
+	<figcaption>Figures and captions are styled too. This is the feature image again, standing in for a diagram.</figcaption>
+</figure>
+
+<h2>If you only do one thing</h2>
+<p>Put a recurring appointment in the calendar for the last Friday of the month, titled <em>restore something</em>. Invite the person who would have to do it for real. The first one will be uncomfortable. By the third it will take forty minutes, and you will know something about your organization that almost nobody knows about theirs.</p>

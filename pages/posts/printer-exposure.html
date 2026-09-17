@@ -1,0 +1,52 @@
+<!-- pagetitle:Office printers with their admin pages open to the internet -->
+<!-- pagelayout:post-advisory -->
+<!-- pagedate:06/16/2026 -->
+<!-- pageimage:pages/posts/images/printer-exposure.webp -->
+<!-- pageexcerpt:During assessments this quarter, one office in five had a multifunction printer reachable from outside, default password intact, address book full of staff email addresses. -->
+<!-- pagekeywords:printer,mfp,exposed services,port forwarding,default password,firmware -->
+<!-- pageauthor:Priya Raman -->
+<!-- pagetype:article -->
+<!-- pagecategory: advisories -->
+
+<h2>What we are seeing</h2>
+<p>A large multifunction printer is a computer with a hard disk, a web server, an address book and, very often, stored credentials for a mailbox and a file share. Somebody once forwarded a port to it so that scan-to-email would work from a second office, or so the supplier could read the meter. Nobody wrote it down.</p>
+<p>From the outside it looks like a login page with the manufacturer's logo on it. The default password is in the manual, and the manual is on the internet.</p>
+
+<h2>Why it matters more than it sounds</h2>
+<ul class="ticks">
+	<li>The address book is a verified list of real staff addresses, ideal for phishing</li>
+	<li>Scan-to-email credentials are often a real mailbox with a password that never expires</li>
+	<li>Scan-to-folder credentials are sometimes a domain account, occasionally an administrator</li>
+	<li>The disk keeps copies of what was scanned. Payroll. Passports. Contracts.</li>
+</ul>
+
+<h2>What to do this week</h2>
+<ol class="steps">
+	<li><strong>Look from the outside.</strong> Ask whoever manages your firewall for the list of port forwards. If nobody can produce one, that is the finding.</li>
+	<li><strong>Remove the forward.</strong> There is no good reason for a printer to accept connections from the internet. Supplier meter readings work outbound.</li>
+	<li><strong>Change the admin password</strong> and update the firmware while you are there.</li>
+	<li><strong>Replace stored credentials</strong> with an account that can do exactly one thing.</li>
+</ol>
+
+<div class="callout">
+	<p class="callout-title">Returning a leased machine?</p>
+	<p>Ask for the disk to be wiped or removed, and get that in writing. Lease returns are resold with their contents more often than the industry likes to admit.</p>
+</div>
+
+<!-- sidebar -->
+
+<div class="sidecard sidecard-ink">
+	<p class="eyebrow">At a glance</p>
+	<dl class="factlist">
+		<dt>Severity</dt><dd><span class="chip chip-medium">Medium</span></dd>
+		<dt>Affects</dt><dd>Networked printers and copiers behind a port forward</dd>
+		<dt>Fix</dt><dd>Remove the forward, change the password</dd>
+		<dt>Effort</dt><dd>An hour</dd>
+	</dl>
+</div>
+
+<div class="sidecard">
+	<p class="eyebrow">Want us to check?</p>
+	<p>An outside-in look at what your office exposes is part of the free assessment.</p>
+	<p><a class="btn btn-orange btn-small disable-scrolling-underline" href="contact">Book one</a></p>
+</div>
